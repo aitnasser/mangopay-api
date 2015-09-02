@@ -12,7 +12,7 @@
     "marketplace"
   ],
   "author": "Marek Kalnik <marekk@bamlab.fr>",
-  "license": "MIT"
+  "license": "MIT",
   "dependencies": {
     "bluebird": "^2.9.25",
     "request": "^2.55.0",
