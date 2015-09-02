@@ -1,0 +1,28 @@
+{
+  "name": "mangopay-api",
+  "version": "1.0.0",
+  "description": "The Mangopay API implementation for node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "mangopay",
+    "payment",
+    "marketplace"
+  ],
+  "author": "Marek Kalnik <marekk@bamlab.fr>",
+  "license": "MIT"
+  "dependencies": {
+    "bluebird": "^2.9.25",
+    "request": "^2.55.0",
+    "request-promise": "^0.4.2"
+  },
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "chai-as-promised": "^5.0.0",
+    "mocha": "^2.2.4",
+    "sinon": "^1.14.1",
+    "sinon-chai": "^2.7.0"
+  }
+}
