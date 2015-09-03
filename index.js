@@ -241,10 +241,11 @@ Mangopay.prototype.getBankAccount = function(mangopayUserId, accountId) {
  * @param fanCookerCardId
  * @param amount            The value to debit, in eurocents
  * @param fanCookerWalletId
+ * @param fees              The fees to debit, in eurocents
  *
  * @returns {Promise.<object>}
  */
-Mangopay.prototype.debit = function(fanCookerId, fanCookerCardId, amount, fanCookerWalletId) {
+Mangopay.prototype.debit = function(fanCookerId, fanCookerCardId, amount, fanCookerWalletId, fees = 0) {
   return rp.post({
     uri: this.baseUrl + '/payins/card/direct',
     headers: this.headers,
@@ -257,7 +258,7 @@ Mangopay.prototype.debit = function(fanCookerId, fanCookerCardId, amount, fanCoo
       },
       Fees: {
         Currency: 'EUR',
-        Amount: 0
+        Amount: fees
       },
       CreditedWalletId: fanCookerWalletId,
       SecureModeReturnUrl: 'http://www.bamlab.fr',
