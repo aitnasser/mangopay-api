@@ -245,7 +245,10 @@ Mangopay.prototype.getBankAccount = function(mangopayUserId, accountId) {
  *
  * @returns {Promise.<object>}
  */
-Mangopay.prototype.debit = function(fanCookerId, fanCookerCardId, amount, fanCookerWalletId, fees = 0) {
+Mangopay.prototype.debit = function(fanCookerId, fanCookerCardId, amount, fanCookerWalletId, fees) {
+  if (fees == null){
+    fees = 0;
+  }
   return rp.post({
     uri: this.baseUrl + '/payins/card/direct',
     headers: this.headers,
