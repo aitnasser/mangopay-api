@@ -370,4 +370,80 @@ Mangopay.prototype.getPayIn = function(payinId) {
   });
 };
 
+/**
+ * Registers a document for the given user
+ *
+ * @param userID
+ * @param type : can be IDENTITY_PROOF, REGISTRATION_PROOF, ARTICLES_OF_ASSOCIATION, SHAREHOLDER_DECLARATION,
+ * ADDRESS_PROOF
+ *
+ * @returns {Promise.<object>}
+ */
+Mangopay.prototype.registerDocument = function(userId, documentType) {
+  return rp.post({
+    uri: this.baseUrl + '/users/' + userId + '/KYC/documents',
+    headers: this.headers,
+    json: true,
+    body: {
+      Type: documentType
+    }
+  });
+};
+
+/**
+ * Gets a document for the given user
+ * @param userID
+ * @param documentId
+ *
+ * @returns {Promise.<object>}
+ */
+Mangopay.prototype.getDocument = function(userId, documentId) {
+return rp.get({
+    uri: this.baseUrl + '/users/' + userId + '/KYC/documents/' + documentId,
+    headers: this.headers,
+    json: true,
+  });
+};
+
+/**
+ * Sets a document status for the given user
+ * @param userID
+ * @param documentId
+ *
+ * @returns {Promise.<object>}
+ */
+Mangopay.prototype.askDocumentValidation = function(userId, documentId) {
+return rp.put({
+    uri: this.baseUrl + '/users/' + userId + '/KYC/documents/' + documentId,
+    headers: this.headers,
+    json: true,
+    body: {
+      Status: 'VALIDATION_ASKED'
+    }
+  });
+};
+
+/**
+ * Adds a page to the given document
+ * "Document have to be in « CREATED » status"
+ * @param userID
+ * @param documentId
+ * @param File : Only GIF, PNG, JPG, JPEG, BMP, PDF and DOC formats are accepted, transformed in base 64 (the
+ * uploaded base 64 string can not be less than 1300 octets and can not be more than 10MB, so the original file
+ * must be less than about 7MB). TIP : You need to fill in only the binary code. Do not send the first part that some
+ * converters add into the binary code which is <img alt= » » src= »data:image/png;base64,
+ *
+ * @returns {Promise.<object>}
+ */
+Mangopay.prototype.addPage = function(userId, documentId, fileData) {
+return rp.post({
+    uri: this.baseUrl + '/users/' + userId + '/KYC/documents/' + documentId + '/pages',
+    headers: this.headers,
+    json: true,
+    body: {
+      File: fileData
+    }
+  });
+};
+
 module.exports = Mangopay;
