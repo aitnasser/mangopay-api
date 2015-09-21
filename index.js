@@ -34,6 +34,25 @@ Mangopay.prototype.createUser = function(userData) {
 };
 
 /**
+ * Edit a Mangopay user
+ *
+ * @link https://docs.mangopay.com/api-references/users/natural-users/
+ *
+ * @param userId mango user id
+ * @param userData See API reference for required attributes
+ *
+ * @returns {Promise.<object>} A promise that resolves with edited user data.
+ */
+Mangopay.prototype.editUser = function(userId, userData) {
+  return rp.put({
+    uri: this.baseUrl + '/users/natural/' + userId,
+    headers: this.headers,
+    body: userData,
+    json: true
+  });
+};
+
+/**
  * Creates a wallet for the user
  *
  * @param userId Mangopay id for the user
