@@ -389,6 +389,16 @@ Mangopay.prototype.getPayIn = function(payinId) {
   });
 };
 
+Mangopay.prototype.getPayOut = function(payoutId) {
+  var _this = this;
+
+  return rp.get({
+    uri: this.baseUrl + '/payouts/' + payoutId,
+    headers: this.headers,
+    json: true
+  });
+};
+
 /**
  * Registers a document for the given user
  *
